@@ -8,6 +8,8 @@ import { User } from './user/models/user.model';
 import { Posts } from './post/models/post.model';
 import { FileModule } from './file/file.module';
 import { Followers } from './followers/models/followers.model';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import * as path from 'path';
 
 @Module({
   imports: [
@@ -20,6 +22,9 @@ import { Followers } from './followers/models/followers.model';
       database: 'genesis_db',
       models: [User, Posts, Followers],
       autoLoadModels: true
+    }),
+    ServeStaticModule.forRoot({
+      rootPath: path.resolve(__dirname, 'static'),
     }),
     UserModule,
     PostModule,
